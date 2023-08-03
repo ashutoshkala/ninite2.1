@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=inpu, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $('.chkbx').click(function(){
+            var text="";
+            $('.chkbx:checked').each(function(){
+                text+=$(this).val();
+            });
+            text=text.substring(0, text.length);
+            $('#selectedtext').val(text);
+            var count=$("[type='checkbox']:checked").length;
+            $('#count').val($("[type='checkbox']:checked").length);
+        });
+    });
+    </script>
+    <script>
+        function myFunction(){
+            var fire= document.getElementById("ch_fire");
+            var chum= document.getElementById("ch_chroum");
+            var fdev= document.getElementById("ch_fdev");
+            var dock= document.getElementById("ch_dock");
+            var vsc= document.getElementById("ch_vsc");
+            var gcca= document.getElementById("ch_gcca");
+            var output=document.getElementById("output");
+            var ini=document.getElementById("ini");
+            // string
+            let str="download?"
+            if(fire.checked){
+                str=str.concat("id=0&")
+            }
+            if(chum.checked){
+                str=str.concat("id=1&")
+            }
+            if(fdev.checked){
+                str=str.concat("id=2&")
+            }
+            if(dock.checked){
+                str=str.concat("id=3&")
+            }
+            if(vsc.checked){
+                str=str.concat("id=4&")
+            }
+            if(gcca.checked){
+                str=str.concat("id=5&")
+            }
+            
+            str=str.slice(0, -1);
+            str ="curl -s " +"'"+window.location.href+ str + "'"+" | sh"
+            // window.location.assign(str);
+            ini.innerHTML="Copy and Paste the follwing in Terminal";
+            output.innerHTML=str;
+        }
+        
+    </script>
+</head>
+<body>
+    <h1>Ninite for mac</h1>
+    <!-- Hindi : <input value-"Hindi" type="checkbox" id="chk hin"/›
+    English : <input value-"English" type-"checkbox" id-"chk eng"/›«br>br> -->
+
+    <label>Select Subject</label><br>
+    Firefox: <input value="0" type="checkbox" id="ch_fire"/>
+    Chromium: <input value="1" type="checkbox" id="ch_chroum"/>
+    Firefox Dev.: <input value="1" type="checkbox" id="ch_fdev"/>
+    Docker: <input value="1" type="checkbox" id="ch_dock"/>
+    Visual Studio Code: <input value="1" type="checkbox" id="ch_vsc"/>
+    Google Chrome Canary: <input value="1" type="checkbox" id="ch_gcca"/>
+
+    <br>
+
+    
+
+    <button onclick="myFunction() ">Click</button>
+    <p id="ini"></p>
+    <p id="output"></p>
+
+    <!-- <div class="form-value">
+        <form action="/download?" method="post" >
+           <div class="chkbx">
+               <ion-icon name="mail-outline"></ion-icon>
+               <input class="chkbx" type="checkbox" value="01">
+               <label for="">chrome </label>
+           </div>
+           <div class="chkbx">
+               <ion-icon name="lock-closed-outline"></ion-icon>
+               <input class="chkbx" type="checkbox" value="02">
+               <label for="">firefox</label>
+           </div> 
+           <div class="chkbx">
+               <label for=""><input class="chkbx" type="checkbox" value="03"> vs code</label>
+           </div>
+           <textarea type='text' name="select" id='selectedtext' placeholder="Selected Checkboxs"></textarea></br> 
+            <input type='text' id='count' placeholder="Number Of Selected Checkboxs">
+           <button>submit</button>
+        </form>
+   </div>  -->
+  
+
+</body>
+</html>
